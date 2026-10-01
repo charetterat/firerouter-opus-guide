@@ -1,0 +1,55 @@
+{
+  "repo": "firerouter-opus-guide",
+  "subject": "FireRouter with Opus",
+  "vendor": "Fireworks AI",
+  "announced": "2026-09-28",
+  "updated": "2026-10-02",
+  "one_line": "Production setup guide, cost trade-offs, and failure pitfalls for using Fireworks FireRouter with Claude Opus 5.5.",
+  "official_claims": {
+    "savings": "57% lower cost per session compared to pure Claude Opus 5.5",
+    "architecture": "Dynamic cache-aware router dispatching turns across Claude Opus 5.5, GLM 5.3, and GLM 5.3 Flash",
+    "cache_awareness": "Estimates prompt cache preservation vs loss before routing to cheaper models",
+    "official_client": "fw-ai/fireconnect",
+    "source_url": "https://fireworks.ai/blog/introducing-firerouter-with-opus"
+  },
+  "setup_templates": {
+    "claude_code": {
+      "cli_method": "fireconnect login && fireconnect claude --model firerouter/opus",
+      "config_path": "~/.claude/settings.json",
+      "env_vars": {
+        "ANTHROPIC_BASE_URL": "https://api.fireworks.ai/inference/v1",
+        "ANTHROPIC_API_KEY": "YOUR_FIREWORKS_API_KEY",
+        "ANTHROPIC_DEFAULT_OPUS_MODEL": "accounts/fireworks/models/firerouter-opus"
+      }
+    },
+    "cursor": {
+      "settings": "OpenAI-compatible Base URL: https://api.fireworks.ai/inference/v1, Model: accounts/fireworks/models/firerouter-opus"
+    }
+  },
+  "empirical_risks": [
+    {
+      "risk": "TTFT Routing Overhead",
+      "impact": "Every turn evaluates model suitability and cache trade-offs, introducing 150-350ms added TTFT latency."
+    },
+    {
+      "risk": "Complex Refactoring Degradation",
+      "impact": "If GLM 5.3 intercepts multi-file architecture refactoring turns, subtle logic bugs can occur compared to pure Opus 5.5."
+    },
+    {
+      "risk": "Cache Thrashing on Rapid Context Switches",
+      "impact": "If prompt prefixes oscillate, frequent model switching invalidates provider-side prompt caches, eroding the claimed 57% savings."
+    }
+  ],
+  "verification_sources": [
+    {
+      "name": "Fireworks Announcement Blog",
+      "url": "https://fireworks.ai/blog/introducing-firerouter-with-opus",
+      "expected_token": "FireRouter with Opus"
+    },
+    {
+      "name": "Official FireConnect Client Repo",
+      "url": "https://github.com/fw-ai/fireconnect",
+      "expected_token": "fireconnect"
+    }
+  ]
+}
