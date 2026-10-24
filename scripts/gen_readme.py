@@ -22,6 +22,7 @@ def build(d):
 [![Tested on Claude Code](https://img.shields.io/badge/Claude%20Code-Verified-blue)](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code)
 [![Tested on Cursor](https://img.shields.io/badge/Cursor%20IDE-Compatible-violet)](https://cursor.com)
 [![License](https://img.shields.io/badge/License-MIT-gray.svg)](LICENSE)
+[![Last updated](https://img.shields.io/badge/Last%20updated-{d['updated']}-green)]()
 
 **Stop paying pure Opus 5.5 rates for boilerplate edits.**
 A developer-first setup guide, cache-preservation breakdown, and unbiased evaluation for Fireworks AI's `firerouter-opus`.
