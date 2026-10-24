@@ -45,7 +45,11 @@ def main():
             failed = True
     if failed:
         sys.exit(1)
-    print("\nAll verification sources verified successfully.")
+    # 🔴 报出**源数**（2026-10-15 加），同 awesome-muse-gadgets：
+    #    一句话的绿无法核对，空清单会印出同样的绿。
+    if not sources:
+        sys.exit("No sources found — an empty list is a pass that proves nothing. Failing.")
+    print(f"\nAll {len(sources)} sources verified successfully.")
 
 
 if __name__ == "__main__":
